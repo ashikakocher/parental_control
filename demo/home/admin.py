@@ -1,12 +1,7 @@
 from django.contrib import admin
+from .models import CustomUser, ParentProfile, ChildProfile, ScreenTime  # Import other models
 
-# Register your models here.
-from django.contrib import admin
-from .models import CustomUser, ParentProfile, ChildProfile
-
-@admin.register(CustomUser)
-class CustomUserAdmin(admin.ModelAdmin):
-    list_display = ('username', 'email', 'is_parent', 'is_child')
-
+admin.site.register(CustomUser)
 admin.site.register(ParentProfile)
 admin.site.register(ChildProfile)
+admin.site.register(ScreenTime)

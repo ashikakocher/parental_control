@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>App Usage Control</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css"> <!-- Add your CSS file here -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+        label {
+            font-weight: bold;
+        }
+        select, button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+        .remove-btn {
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .remove-btn:hover {
+            background-color: #c82333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>App Usage Control</h2>
+        <form id="usage-form">
+            <label for="app-name">Select App:</label>
+            <select id="app-name" required>
+                <option value="">Choose an app</option>
+                <option value="YouTube">YouTube</option>
+                <option value="Instagram">Instagram</option>
+                <option value="WhatsApp">WhatsApp</option>
+                <option value="Facebook">Facebook</option>
+            </select>
+            <button type="submit">Set App</button>
+        </form>
+        <table>
+            <thead>
+                <tr>
+                    <th>App Name</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="usage-table">
+                <!-- Data will be inserted here dynamically -->
+            </tbody>
+        </table>
+    </div>
+    <script>
+        document.getElementById('usage-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            let appName = document.getElementById('app-name').value;
+            if (appName) {
+                let table = document.getElementById('usage-table');
+                let row = table.insertRow();
+                let cell1 = row.insertCell(0);
+                let cell2 = row.insertCell(1);
+                cell1.innerText = appName;
+                let removeBtn = document.createElement('button');
+                removeBtn.innerText = 'Remove';
+                removeBtn.classList.add('remove-btn');
+                removeBtn.onclick = function() {
+                    row.remove();
+                };
+                cell2.appendChild(removeBtn);
+            }
+        });
+    </script>
+</body>
+</html>
